@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  app:
+    container_name: app-helloWorld
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - ./node_modules:/usr/src/app/node_modules
+    networks:
+      - helloworld-network
+    command: bash -c "npm install && npm start"
+    env_file:
+      - ./.env
+    ports:
+      - '3000:3000'
+
+networks:
+  helloworld-network:
